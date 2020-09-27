@@ -1,13 +1,19 @@
-import { Component, HostListener } from '@angular/core';
-
+import { Component, HostListener, OnInit } from '@angular/core';
+import { AuthenticationService } from '../services/authentication.service';
 @Component({
   selector: 'app-nav-menu',
   templateUrl: './nav-menu.component.html',
   styleUrls: ['./nav-menu.component.css']
 })
-export class NavMenuComponent {
+export class NavMenuComponent implements OnInit {
   isExpanded = false;
   isScrolled = false;
+  currentUser: string;
+
+  constructor(public authService: AuthenticationService) {}
+
+  ngOnInit() {
+  }
 
   collapse() {
     this.isExpanded = false;

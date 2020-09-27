@@ -17,11 +17,14 @@
           <li class="nav-item"
               [routerLinkActive]="['link-active']"
               [routerLinkActiveOptions]="{ exact: true }">
-            <a class="nav-link" [routerLink]="['/about-us']">About Us</a>
+            <a class="nav-link" [routerLink]="['/about-us']">Our Mission</a>
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link" [routerLink]="['/mplus']">Our Mission</a>
-          </li>
+          <section *ngIf="authService.userData">
+            <li>Hello {{authService.userData.email}}</li>
+            <li class="nav-item">
+              <a class="nav-link" (click)="authService.logout()">Log out</a>
+            </li>
+          </section>
         </ul>
       </div>
     </div>

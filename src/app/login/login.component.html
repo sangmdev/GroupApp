@@ -1,0 +1,41 @@
+<div class="container pt-3">
+  <div class="row justify-content-sm-center">
+    <div class="col-sm-10 col-md-6">
+      <div class="card border-info">
+        <div class="card-body">
+          <div class="row justify-content-sm-center mb-3">
+            <mat-button-toggle-group name="accountAction" [(ngModel)]="accountAction" aria-label="Font Style">
+              <mat-button-toggle value="login">Log In</mat-button-toggle>
+              <mat-button-toggle value="register">Create Account</mat-button-toggle>
+            </mat-button-toggle-group>
+          </div>
+          <div class="row" *ngIf="accountAction === 'login'">
+            <div class="col-md-4 text-center">
+              <img src="https://placeimg.com/128/128/nature">
+            </div>
+            <div class="col-md-8 text-center">
+              <form (ngSubmit)="login()">
+                <input class="form-control" placeholder="Email" [(ngModel)]="email" name="email" aria-label="email" required>
+                <input class="form-control" type="password" placeholder="Password" [(ngModel)]="password" name="password" aria-label="password" required>
+                <a [routerLink]="['/forgot-password']">Forgot Password?</a>
+                <button class="btn btn-lg btn-primary btn-block mb-1" type="submit">Log In</button>
+              </form>
+            </div>
+          </div>
+          <div class="row justify-content-sm-center" *ngIf="accountAction === 'register'">
+            <div class="col-md-4 text-center">
+              <img src="https://placeimg.com/128/128/nature">
+            </div>
+            <div class="col-md-8">
+              <form (ngSubmit)="register()">
+                <input class="form-control" placeholder="Email" [(ngModel)]="email" name="email" aria-label="email" required>
+                <input class="form-control" type="password" placeholder="Password" [(ngModel)]="password" name="password" aria-label="password" required>
+                <button class="btn btn-lg btn-success btn-block mb-1" type="submit">Sign Up</button>
+              </form>
+            </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
