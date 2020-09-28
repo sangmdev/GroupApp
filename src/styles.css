@@ -25,3 +25,15 @@ body {
     opacity: 1
   }
 }
+
+.bg-danger .mat-simple-snackbar-action {
+  color: white !important;
+  background: #5a6268 !important;
+  border-radius: .25rem;
+}
+
+.error-icon {
+  color: red;
+  vertical-align: text-bottom;
+  margin-left: .5rem;
+}

@@ -28,20 +28,15 @@ export class AuthenticationService {
   }
 
   async register(email: string, password: string) {
-    return this.firebaseAuth.createUserWithEmailAndPassword(email, password)
-      .then((result) => {
-        /* Call the SendVerificaitonMail() function when new user sign 
-        up and returns promise */
-        this.sendEmailVerification();
-        this.SetUserData(result.user);
-      }).catch((error) => {
-        window.alert(error.message)
-      })
+    var result = await this.firebaseAuth.createUserWithEmailAndPassword(email, password);
+    this.sendEmailVerification();
+    this.SetUserData(result.user);
+    this.router.navigate(['/dashboard']);
+
   }
 
   async sendEmailVerification() {
     await (await this.firebaseAuth.currentUser).sendEmailVerification();
-    this.router.navigate(['admin/verify-email']);
   }
 
   async sendPasswordResetEmail(passwordResetEmail: string) {
@@ -56,7 +51,9 @@ export class AuthenticationService {
   }
 
   get isLoggedIn(): boolean {
+    console.log("Check if logged in.")
     const user = JSON.parse(localStorage.getItem('user'));
+    console.log(user);
     return user !== null;
   }
 

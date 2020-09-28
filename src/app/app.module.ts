@@ -1,30 +1,35 @@
+/*Angular Modules*/
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from "@angular/router";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+/* Components */
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { AboutUsComponent } from './about-us/about-us.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
-
-import { AngularFireModule } from "@angular/fire";
-import { AngularFireAuthModule } from "@angular/fire/auth";
-import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
-import { AuthGuard } from "./guards/auth.guard";
+/*Angular Material Modules*/
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
+/*Firebase Modules*/
+import { AngularFireModule } from "@angular/fire";
+import { AngularFireAuthModule } from "@angular/fire/auth";
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import * as firebase from 'firebase';
 
+import { AuthGuard } from "./guards/auth.guard";
 
 var firebaseConfig = {
   apiKey: "AIzaSyAxWu1gJCXKjGt-NgRMe1g2ECC84zeNzes",
@@ -47,7 +52,6 @@ firebase.analytics();
     NavMenuComponent,
     AboutUsComponent,
     LoginComponent,
-    RegisterComponent,
     ForgotPasswordComponent,
     VerifyEmailComponent,
     DashboardComponent,
@@ -58,7 +62,6 @@ firebase.analytics();
       { path: '', component: HomeComponent },
       { path: 'about-us', component: AboutUsComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegisterComponent },
       { path: 'forgot-password', component: ForgotPasswordComponent },
       { path: 'verify-email', component: VerifyEmailComponent },
       { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
@@ -74,7 +77,9 @@ firebase.analytics();
     FormsModule,
     ReactiveFormsModule,
     MatTabsModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatSnackBarModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

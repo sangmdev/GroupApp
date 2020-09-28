@@ -14,11 +14,11 @@
               <img src="https://placeimg.com/128/128/nature">
             </div>
             <div class="col-md-8 text-center">
-              <form (ngSubmit)="login()">
-                <input class="form-control" placeholder="Email" [(ngModel)]="email" name="email" aria-label="email" required>
-                <input class="form-control" type="password" placeholder="Password" [(ngModel)]="password" name="password" aria-label="password" required>
-                <a [routerLink]="['/forgot-password']">Forgot Password?</a>
-                <button class="btn btn-lg btn-primary btn-block mb-1" type="submit">Log In</button>
+              <form (ngSubmit)="requireInput()">
+                <input class="form-control" type="email" placeholder="Email" [(ngModel)]="email" name="email" #name="ngModel" aria-label="email" required> <span [ngClass]="{ 'no-error': !emailError }" class="material-icons error-icon" matTooltip='{{emailErrors}}'>error_outline</span>
+                <input class="form-control" type="password" placeholder="Password" [(ngModel)]="password" #name="ngModel" name="password" aria-label="password" required> <span [ngClass]="{ 'no-error': !passwordError }" class="material-icons error-icon" matTooltip='{{passwordErrors}}'>error_outline</span>
+                <a href="" data-toggle="modal" data-target="#forgotPasswordModal">Forgot Password?</a>
+                <button class="btn btn-lg btn-primary btn-block my-2" type="submit">Log In</button>
               </form>
             </div>
           </div>
@@ -26,11 +26,12 @@
             <div class="col-md-4 text-center">
               <img src="https://placeimg.com/128/128/nature">
             </div>
-            <div class="col-md-8">
-              <form (ngSubmit)="register()">
-                <input class="form-control" placeholder="Email" [(ngModel)]="email" name="email" aria-label="email" required>
-                <input class="form-control" type="password" placeholder="Password" [(ngModel)]="password" name="password" aria-label="password" required>
-                <button class="btn btn-lg btn-success btn-block mb-1" type="submit">Sign Up</button>
+            <div class="col-md-8 text-center">
+              <form (ngSubmit)="requireInput()">
+                <input class="form-control" type="email" placeholder="Email" [(ngModel)]="email" name="email" aria-label="email" required> <span [ngClass]="{ 'no-error': !emailError }" class="material-icons error-icon" matTooltip='{{emailErrors}}'>error_outline</span>
+                <input class="form-control" type="password" placeholder="Password" [(ngModel)]="password" name="password" aria-label="password" required> <span [ngClass]="{ 'no-error': !passwordError }" class="material-icons error-icon" matTooltip='{{passwordErrors}}'>error_outline</span>
+                <a style="visibility:hidden;cursor:default">Forgot Password?</a>
+                <button class="btn btn-lg btn-success btn-block my-2" type="submit">Sign Up</button>
               </form>
             </div>
             </div>
