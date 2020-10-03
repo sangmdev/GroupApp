@@ -87,12 +87,14 @@ export class LoginComponent implements OnInit {
     if (!this.emailError && !this.passwordError) {
       this.authService.login(this.email, this.password)
         .then(user => {
-          this.authService.SetUserData(user.user);
-          this.router.navigate(['/dashboard']);
-        })
+          this.authService.SetUserData(user.user).then(() => {
+              console.log("DOne with setting user");
+            this.router.navigate(['/dashboard']);
+          }
+        )})
         .catch(err => {
-          this.getErrorMessage(err.code);
-      });
+              this.getErrorMessage(err.code);
+          });
     }
   }
 
@@ -113,9 +115,13 @@ export class LoginComponent implements OnInit {
 
   // Based on errorcode, open snackbar with error message.
   getErrorMessage(errorCode) {
+    console.log(errorCode);
     switch (errorCode) {
       case "auth/user-not-found": this.openErrorSnackBar("Email or password is incorrect. Please try again."); break;
       case "auth/email-already-in-use": this.openErrorSnackBar("There is an account with that email already."); break;
+      case "auth/wrong-password": this.openErrorSnackBar("Email or password is incorrect. Please try again."); break;
+      default: this.openErrorSnackBar("Email or password is incorrect. Please try again."); break;
+          
     }
   }
 

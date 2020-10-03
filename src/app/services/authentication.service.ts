@@ -45,7 +45,7 @@ export class AuthenticationService {
     })
   }
 
-  SetUserData(user) {
+  async SetUserData(user) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
     const userData: User = {
       uid: user.uid,
@@ -54,9 +54,10 @@ export class AuthenticationService {
       photoURL: user.photoURL,
       emailVerified: user.emailVerified
     }
-    return userRef.set(userData, {
+    console.log("Setting User data");
+    return await userRef.set(userData, {
       merge: true
-    })
+    });
   }
 
   async loginWithGoogle() {
