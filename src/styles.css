@@ -1,9 +1,39 @@
 
 html, body {
-  max-height: 100%;
+  height: 100%;
 }
 
 body {
   margin: 0;
   padding: 0;
+  background-color:#333333;
+}
+
+.fadeInBottom {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-name: fadeInBottom
+}
+
+@keyframes fadeInBottom {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  to {
+    opacity: 1
+  }
+}
+
+.bg-danger .mat-simple-snackbar-action {
+  color: white !important;
+  background: #5a6268 !important;
+  border-radius: .25rem;
+}
+
+.error-icon {
+  color: red;
+  vertical-align: text-bottom;
+  margin-left: .5rem;
 }

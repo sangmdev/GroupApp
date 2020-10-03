@@ -1,0 +1,14 @@
+.form-control {
+    margin-bottom: 2%;
+    display: inline-block;
+    width: 90% !important;
+}
+
+.forgot-pass {
+    text-align: right;
+}
+
+
+.no-error {
+  visibility: hidden;
+}

@@ -1,5 +1,32 @@
 <div class="homepage-container">
-  <div>
-    A group management platform that enhances your relationships.
+  <div class="hero-image">
+    <span class="fadeInBottom">
+      <div class="hero-text">
+        <h1>Akin</h1>
+        <p>A group management platform that enhances your relationships.</p>
+        <div *ngIf="this.authService.userData">
+          <h2>Welcome back {{authService.userData.email}}.</h2>
+          <button [routerLink]="['/dashboard']" class="btn btn-primary">Dashboard</button>
+          <button class="btn btn-secondary ml-2" (click)="logout()">Log out</button>
+        </div>
+      </div>
+      <div *ngIf="!this.authService.userData" class="login-box">
+        <app-login></app-login>
+      </div>
+    </span>
+  </div>
+</div>
+
+<!--Forgot Password Modal-->
+<div class="modal fade" id="forgotPasswordModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered " role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <app-forgot-password></app-forgot-password>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
   </div>
 </div>
