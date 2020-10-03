@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from "../services/authentication.service";
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -16,8 +17,9 @@ export class LoginComponent implements OnInit {
   passwordError = false;
   emailErrors = [];
   passwordErrors = "";
+  isLoggedIn = false;
 
-  constructor(public authService: AuthenticationService, private snackBar: MatSnackBar) { }
+  constructor(public authService: AuthenticationService, private snackBar: MatSnackBar, public router: Router) { }
 
   ngOnInit(): void {
   }
@@ -83,8 +85,13 @@ export class LoginComponent implements OnInit {
   // If no errors, send email and password to authentication service for login. Catch any errors.
   login() {
     if (!this.emailError && !this.passwordError) {
-      this.authService.login(this.email, this.password).catch(err => {
-        this.getErrorMessage(err.code);
+      this.authService.login(this.email, this.password)
+        .then(user => {
+          this.authService.SetUserData(user.user);
+          this.router.navigate(['/dashboard']);
+        })
+        .catch(err => {
+          this.getErrorMessage(err.code);
       });
     }
   }
@@ -92,19 +99,23 @@ export class LoginComponent implements OnInit {
   //If no errors, send email and password to authentication service for register. Catch any errors.
   register() {
     if (!this.emailError && !this.passwordError) {
-      this.authService.register(this.email, this.password).catch(err => {
-        this.getErrorMessage(err.code);
+      this.authService.register(this.email, this.password)
+        .then(user => {
+          this.authService.sendEmailVerification(user);
+          this.authService.SetUserData(user.user);
+          this.router.navigate(['/dashboard']);
+        })
+        .catch(err => {
+          this.getErrorMessage(err.code);
       });
     }
   }
 
   // Based on errorcode, open snackbar with error message.
   getErrorMessage(errorCode) {
-    console.log(errorCode);
     switch (errorCode) {
       case "auth/user-not-found": this.openErrorSnackBar("Email or password is incorrect. Please try again."); break;
       case "auth/email-already-in-use": this.openErrorSnackBar("There is an account with that email already."); break;
-      default: this.openErrorSnackBar("Email or password is incorrect. Please try again.");
     }
   }
 

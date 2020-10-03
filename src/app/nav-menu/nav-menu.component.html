@@ -22,7 +22,7 @@
           <section *ngIf="authService.userData">
             <li>Hello {{authService.userData.email}}</li>
             <li class="nav-item">
-              <a class="nav-link" (click)="authService.logout()">Log out</a>
+              <a class="nav-link" (click)="logout()">Log out</a>
             </li>
           </section>
         </ul>

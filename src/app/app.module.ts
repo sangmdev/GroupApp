@@ -44,7 +44,6 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,9 +58,10 @@ firebase.analytics();
   imports: [
     BrowserModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent },
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: 'home', component: HomeComponent },
+      { path: 'login', component: HomeComponent },
       { path: 'about-us', component: AboutUsComponent },
-      { path: 'login', component: LoginComponent },
       { path: 'forgot-password', component: ForgotPasswordComponent },
       { path: 'verify-email', component: VerifyEmailComponent },
       { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },

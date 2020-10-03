@@ -4,8 +4,13 @@
       <div class="hero-text">
         <h1>Akin</h1>
         <p>A group management platform that enhances your relationships.</p>
+        <div *ngIf="this.authService.userData">
+          <h2>Welcome back {{authService.userData.email}}.</h2>
+          <button [routerLink]="['/dashboard']" class="btn btn-primary">Dashboard</button>
+          <button class="btn btn-secondary ml-2" (click)="logout()">Log out</button>
+        </div>
       </div>
-      <div class="login-box">
+      <div *ngIf="!this.authService.userData" class="login-box">
         <app-login></app-login>
       </div>
     </span>

@@ -19,24 +19,19 @@ export class AuthenticationService {
       } else {
         localStorage.setItem('user', null);
       }
-    })}
-
-  async login(email: string, password: string) {
-    var result = await this.firebaseAuth.signInWithEmailAndPassword(email, password);
-    this.SetUserData(result.user);
-    this.router.navigate(['/dashboard']);
+    })
   }
 
-  async register(email: string, password: string) {
-    var result = await this.firebaseAuth.createUserWithEmailAndPassword(email, password);
-    this.sendEmailVerification();
-    this.SetUserData(result.user);
-    this.router.navigate(['/dashboard']);
-
+  login(email: string, password: string) {
+    return this.firebaseAuth.signInWithEmailAndPassword(email, password);
   }
 
-  async sendEmailVerification() {
-    await (await this.firebaseAuth.currentUser).sendEmailVerification();
+  register(email: string, password: string) {
+     return this.firebaseAuth.createUserWithEmailAndPassword(email, password);
+  }
+
+  async sendEmailVerification(user: firebase.auth.UserCredential) {
+    await user.user.sendEmailVerification();
   }
 
   async sendPasswordResetEmail(passwordResetEmail: string) {
@@ -48,13 +43,6 @@ export class AuthenticationService {
       localStorage.removeItem('user');
       this.router.navigate(['/manage-account']);
     })
-  }
-
-  get isLoggedIn(): boolean {
-    console.log("Check if logged in.")
-    const user = JSON.parse(localStorage.getItem('user'));
-    console.log(user);
-    return user !== null;
   }
 
   SetUserData(user) {
