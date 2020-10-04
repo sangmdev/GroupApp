@@ -1,45 +1,16 @@
-.homepage-container {
-  height: 100vh;
+/* Mobile Excluded */
+@media (min-width: 576px) {
 }
-/* The hero image */
-.hero-image {
-  background-color: #333333;
-  height: 100%;
-  position: relative;
-}
-
-/* Place text in the middle of the image */
-.hero-text {
-  text-align: center;
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-}
-
-.login-box {
-  width: 100%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-@keyframes slideInFromBottom {
-  0% {
-    transform: translateY(100%);
+  /* Mobile Only */
+  @media (max-width: 575.98px) {
   }
+    
 
-  100% {
-    transform: translateY(0);
-  }
+/*All screen sizes*/
+.vh-100 {
+  min-height: 100vh;
+  display: flex;
 }
-
-.animate-header {
-  animation: 1s ease-ot 0s 1 slideInFromBottom;
-}
-
 .header-text-container {
   position: absolute;
   left: 50%; /* horizontal alignment */

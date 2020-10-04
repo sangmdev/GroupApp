@@ -12,7 +12,6 @@ export class AuthenticationService {
 
   constructor(public firebaseAuth: AngularFireAuth, public router: Router) {
     this.firebaseAuth.authState.subscribe(user => {
-      console.log("Firing");
       if (user) {
         this.userData = user;
         localStorage.setItem('user', JSON.stringify(this.userData));

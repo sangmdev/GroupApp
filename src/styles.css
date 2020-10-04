@@ -1,4 +1,12 @@
+/* Mobile Excluded */
+@media (min-width: 576px) {
+}
 
+/* Mobile Only */
+@media (max-width: 575.98px) {
+}
+
+/* All screen sizes */
 html, body {
   height: 100%;
 }
@@ -6,24 +14,7 @@ html, body {
 body {
   margin: 0;
   padding: 0;
-  background-color:#333333;
-}
-
-.fadeInBottom {
-  animation-duration: 1s;
-  animation-fill-mode: both;
-  animation-name: fadeInBottom
-}
-
-@keyframes fadeInBottom {
-  from {
-    opacity: 0;
-    transform: translateY(100%);
-  }
-
-  to {
-    opacity: 1
-  }
+  background-color: #333333;
 }
 
 .bg-danger .mat-simple-snackbar-action {
@@ -35,5 +26,7 @@ body {
 .error-icon {
   color: red;
   vertical-align: text-bottom;
-  margin-left: .5rem;
+  margin-left: .2rem;
 }
+
+
