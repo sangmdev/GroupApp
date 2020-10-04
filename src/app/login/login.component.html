@@ -16,9 +16,9 @@
             <div class="col-md-8 text-center">
               <form (ngSubmit)="requireInput()">
                 <input class="form-control" type="email" placeholder="Email" [(ngModel)]="email" name="email" #name="ngModel" aria-label="email" required>
-                <span [ngClass]="{ 'no-error': !emailError }" #emailToolTip class="material-icons error-icon" (click)="emailToolTip.toggle()" matTooltip='{{emailErrors}}' matTooltipPosition="left">error_outline</span>
+                <span [ngClass]="{ 'no-error': !emailError }" #emailToolTip="matTooltip" class="material-icons error-icon" (click)="emailToolTip.toggle()" matTooltip='{{emailErrors}}' matTooltipPosition="left">error_outline</span>
                 <input class="form-control" type="password" placeholder="Password" [(ngModel)]="password" #name="ngModel" name="password" aria-label="password" required>
-                <span [ngClass]="{ 'no-error': !passwordError }" #passwordToolTip class="material-icons error-icon" matTooltip='{{passwordErrors}}' (click)="passwordToolTip.toggle()" matTooltipPosition="left">error_outline</span>
+                <span [ngClass]="{ 'no-error': !passwordError }" #passwordToolTip="matTooltip" class="material-icons error-icon" matTooltip='{{passwordErrors}}' (click)="passwordToolTip.toggle()" matTooltipPosition="left">error_outline</span>
                 <a href="" data-toggle="modal" data-target="#forgotPasswordModal">Forgot Password?</a>
                 <button class="btn btn-lg btn-primary btn-block my-2" type="submit">Log In</button>
               </form>
@@ -30,8 +30,8 @@
             </div>
             <div class="col-md-8 text-center">
               <form (ngSubmit)="requireInput()">
-                <input class="form-control" type="email" placeholder="Email" [(ngModel)]="email" name="email" aria-label="email" required> <span [ngClass]="{ 'no-error': !emailError }" #emailToolTip (click)="emailToolTip.toggle()" class="material-icons error-icon" matTooltip='{{emailErrors}}' matTooltipPosition="left">error_outline</span>
-                <input class="form-control" type="password" placeholder="Password" [(ngModel)]="password" name="password" aria-label="password" required> <span [ngClass]="{ 'no-error': !passwordError }" #passwordToolTip (click)="passwordToolTip.toggle()" class="material-icons error-icon" matTooltip='{{passwordErrors}}' matTooltipPosition="left">error_outline</span>
+                <input class="form-control" type="email" placeholder="Email" [(ngModel)]="email" name="email" aria-label="email" required> <span [ngClass]="{ 'no-error': !emailError }" #emailToolTip="matTooltip" (click)="emailToolTip.toggle()" class="material-icons error-icon" matTooltip='{{emailErrors}}' matTooltipPosition="left">error_outline</span>
+                <input class="form-control" type="password" placeholder="Password" [(ngModel)]="password" name="password" aria-label="password" required> <span [ngClass]="{ 'no-error': !passwordError }" #passwordToolTip="matTooltip" (click)="passwordToolTip.toggle()" class="material-icons error-icon" matTooltip='{{passwordErrors}}' matTooltipPosition="left">error_outline</span>
                 <a style="visibility:hidden;cursor:default">Forgot Password?</a>
                 <button class="btn btn-lg btn-success btn-block my-2" type="submit">Sign Up</button>
               </form>
