@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { AuthenticationService } from "../services/authentication.service";
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from "@angular/router";
@@ -17,7 +17,6 @@ export class LoginComponent implements OnInit {
   passwordError = false;
   emailErrors = [];
   passwordErrors = "";
-  isLoggedIn = false;
 
   constructor(public authService: AuthenticationService, private snackBar: MatSnackBar, public router: Router) { }
 
@@ -86,15 +85,10 @@ export class LoginComponent implements OnInit {
   login() {
     if (!this.emailError && !this.passwordError) {
       this.authService.login(this.email, this.password)
-        .then(user => {
-          this.authService.SetUserData(user.user).then(() => {
-              console.log("DOne with setting user");
-            this.router.navigate(['/dashboard']);
-          }
-        )})
         .catch(err => {
-              this.getErrorMessage(err.code);
-          });
+          console.log(err.message);
+          this.getErrorMessage(err.code);
+        });
     }
   }
 
@@ -104,10 +98,9 @@ export class LoginComponent implements OnInit {
       this.authService.register(this.email, this.password)
         .then(user => {
           this.authService.sendEmailVerification(user);
-          this.authService.SetUserData(user.user);
-          this.router.navigate(['/dashboard']);
         })
         .catch(err => {
+          console.log(err.message);
           this.getErrorMessage(err.code);
       });
     }
