@@ -1,14 +1,30 @@
-.form-control {
-    margin-bottom: 2%;
-    display: inline-block;
+/* Mobile Excluded */
+@media (min-width: 576px) {
+  .no-error {
+    visibility: hidden;
+  }
+}
+
+/* Mobile Only */
+@media (max-width: 575.98px) {
+  .form-control {
     width: 90% !important;
+  }
+
+  .no-error {
+    visibility: visible;
+    color: grey;
+  }
 }
 
-.forgot-pass {
-    text-align: right;
+/* All screen sizes */
+.form-control {
+  margin-bottom: 2%;
+  display: inline-block;
+  width: 90% !important;
 }
 
-
-.no-error {
-  visibility: hidden;
+.random-pic {
+  margin-bottom: 2%;
 }
+
