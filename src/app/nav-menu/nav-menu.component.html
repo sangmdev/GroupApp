@@ -14,17 +14,15 @@
       <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"
            [ngClass]="{ show: isExpanded }">
         <ul class="navbar-nav flex-grow margin-right">
-          <li class="nav-item"
+          <!--<li class="nav-item"
               [routerLinkActive]="['link-active']"
               [routerLinkActiveOptions]="{ exact: true }">
             <a class="nav-link" [routerLink]="['/about-us']">Our Mission</a>
+          </li>-->
+          <li class="nav-item align-self-center">{{authService.userData.email}}</li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="logout()">Log out</a>
           </li>
-          <section *ngIf="authService.userData">
-            <li>Hello {{authService.userData.email}}</li>
-            <li class="nav-item">
-              <a class="nav-link" (click)="logout()">Log out</a>
-            </li>
-          </section>
         </ul>
       </div>
     </div>
