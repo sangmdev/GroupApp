@@ -2,8 +2,9 @@
 <div class="container-fluid dashboard-container fill mt-2 mb-2 mr-2">
   <div class="row fill">
     <div class="col-sm-2">
-      <div class="search-bar">
-        <input class="form-control" type="search"/>
+      <div class="row m-0 mb-2 mt-2">
+        <input class="col-sm-9" type="search" />
+        <button class="col-sm-2 btn btn-primary ml-2" mat-button (click)="openGroupManager()">+</button>
       </div>
       <ul class="group-list">
         <li class="group">1</li>
@@ -18,7 +19,6 @@
       </ul>
     </div>
     <div class="col-sm-10 group-box">
-
     </div>
   </div>
 </div>

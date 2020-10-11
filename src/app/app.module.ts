@@ -22,6 +22,9 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
 
 /*Firebase Modules*/
 import { AngularFireModule } from "@angular/fire";
@@ -30,6 +33,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import * as firebase from 'firebase';
 
 import { AuthGuard } from "./guards/auth.guard";
+import { GroupManagerComponent } from './group-manager/group-manager.component';
 
 var firebaseConfig = {
   apiKey: "AIzaSyAxWu1gJCXKjGt-NgRMe1g2ECC84zeNzes",
@@ -54,6 +58,7 @@ firebase.analytics();
     ForgotPasswordComponent,
     VerifyEmailComponent,
     DashboardComponent,
+    GroupManagerComponent,
   ],
   imports: [
     BrowserModule,
@@ -79,7 +84,10 @@ firebase.analytics();
     MatTabsModule,
     MatButtonToggleModule,
     MatSnackBarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatRadioModule,
+    MatCardModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
