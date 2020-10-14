@@ -12,17 +12,17 @@
         <mat-radio-button [value]="true">Public</mat-radio-button>
         <mat-radio-button class="ml-4" [value]="false">Private</mat-radio-button>
       </mat-radio-group>
-      <button class="btn btn-lg btn-primary btn-block my-2" type="submit" (click)="createGroup()">Create Group</button>
+      <button class="btn btn-lg btn-primary btn-block my-2" type="submit" [disabled]="submitButtonClicked" (click)="submitButtonClicked = true; createGroup()">Create Group</button>
     </form>
   </div>
   <div class="text-center" *ngIf="groupAction === 'join'">
     <form>
-      <input class="form-control mb-2" type="text" placeholder="Group Name" [(ngModel)]="groupName" name="groupName" #name="ngModel" aria-label="groupName" required />
+      <!--<input class="form-control mb-2" type="text" placeholder="Group Name" [(ngModel)]="groupName" name="groupName" #name="ngModel" aria-label="groupName" required />
       <mat-radio-group [(ngModel)]="isPublic" name="isPublic">
         <mat-radio-button [value]="true">Public</mat-radio-button>
         <mat-radio-button class="ml-4" [value]="false">Private</mat-radio-button>
       </mat-radio-group>
-      <button class="btn btn-lg btn-primary btn-block my-2" type="submit" (click)="createGroup()">Create Group</button>
+      <button class="btn btn-lg btn-primary btn-block my-2" type="submit" (click)="createGroup()">Create Group</button>-->
     </form>
   </div>
 </mat-dialog-content>

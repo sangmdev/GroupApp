@@ -14,6 +14,7 @@ export class GroupManagerComponent implements OnInit {
   groupAction = 'create';
   groupName: string;
   isPublic = true;
+  submitButtonClicked = false;
 
   constructor(private groupService: GroupService, private authService: AuthenticationService, public dialogRef: MatDialogRef<GroupManagerComponent>) { }
 
@@ -22,16 +23,18 @@ export class GroupManagerComponent implements OnInit {
 
   createGroup() {
     const group: Group = {
-      gid: uuidv4(),
-      group_name: this.groupName,
+      id: uuidv4(),
+      name: this.groupName,
       admin_uid: this.authService.userData.uid,
       is_public: this.isPublic
     }
-    this.groupService.createGroup(group).then(() =>
-      this.closeGroupMangerDialog());
+    this.groupService.createGroup(group).then(() => {
+      this.groupService.addUserToGroup(group.id, group.admin_uid);
+      this.closeGroupManagerDialog()
+    });
   }
 
-  closeGroupMangerDialog() {
+  closeGroupManagerDialog() {
     this.dialogRef.close(`Group '${this.groupName}' was created successfully.`);
   }
 }
