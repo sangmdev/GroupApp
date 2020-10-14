@@ -20,6 +20,7 @@
 }
 
 .group-list {
+  width: 100%;
   background: lightgreen;
   display: flex;
   list-style: none;
@@ -30,14 +31,12 @@
   overflow-y: scroll;
 }
 
-.group {
+.group-container {
   background: tomato;
   padding: 5px;
   margin-top: 5px;
   flex-grow: 1;
   line-height: 150px;
   color: white;
-  font-weight: bold;
-  font-size: 3em;
   text-align: center;
 }

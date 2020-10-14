@@ -6,17 +6,11 @@
         <input class="col-sm-9" type="search" />
         <button class="col-sm-2 btn btn-primary ml-2" mat-button (click)="openGroupManager()">+</button>
       </div>
-      <ul class="group-list">
-        <li class="group">1</li>
-        <li class="group">2</li>
-        <li class="group">3</li>
-        <li class="group">3</li>
-        <li class="group">3</li>
-        <li class="group">3</li>
-        <li class="group">3</li>
-        <li class="group">3</li>
-        <li class="group">3</li>
-      </ul>
+      <div class="row">
+        <ul class="group-list">
+          <li *ngFor="let group of userGroups" class="group-container"><span class="group-name">{{group.name}}</span></li>
+        </ul>
+      </div>
     </div>
     <div class="col-sm-10 group-box">
     </div>

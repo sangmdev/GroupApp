@@ -53,4 +53,10 @@ export class AuthenticationService {
     await this.firebaseAuth.signInWithPopup(new auth.GoogleAuthProvider())
     this.router.navigate(['admin/list']);
   }
+
+  getUserData() {
+    const user = JSON.parse(localStorage.getItem('user'));
+    this.userData = user;
+    localStorage.setItem('user', JSON.stringify(this.userData));
+  }
 }
