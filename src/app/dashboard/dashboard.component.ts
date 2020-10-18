@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { GroupManagerComponent } from '../group-manager/group-manager.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -13,6 +13,8 @@ import { AuthenticationService } from '../services/authentication.service';
 })
 export class DashboardComponent implements OnInit {
   userGroups: Group[];
+  selectedGroup: Group;
+  groupIsSelected = false;
   constructor(private dialog: MatDialog, private snackBar: MatSnackBar, private groupService: GroupService, public authService: AuthenticationService) { }
 
   ngOnInit(): void {
@@ -40,8 +42,8 @@ export class DashboardComponent implements OnInit {
   async getUserGroups() {
     this.userGroups = [];
     this.authService.getUserData();
-    this.groupService.getGroupsByUser(this.authService.userData.uid).then(test =>
-      test.forEach(async groupId => {
+    this.groupService.getGroupsByUser(this.authService.userData.uid).then(groups =>
+      groups.forEach(async groupId => {
         this.userGroups.push(await this.groupService.getGroupByGroupId(groupId));
       }));
   }
