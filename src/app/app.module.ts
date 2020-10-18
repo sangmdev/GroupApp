@@ -34,6 +34,7 @@ import * as firebase from 'firebase';
 
 import { AuthGuard } from "./guards/auth.guard";
 import { GroupManagerComponent } from './group-manager/group-manager.component';
+import { GroupChatComponent } from './group-chat/group-chat.component';
 
 var firebaseConfig = {
   apiKey: "AIzaSyAxWu1gJCXKjGt-NgRMe1g2ECC84zeNzes",
@@ -59,6 +60,7 @@ firebase.analytics();
     VerifyEmailComponent,
     DashboardComponent,
     GroupManagerComponent,
+    GroupChatComponent,
   ],
   imports: [
     BrowserModule,

@@ -7,7 +7,7 @@
 }
 
 .group-box {
-    background: grey;
+  background: #333333;
 }
 
 .fill {
@@ -35,8 +35,8 @@
   background: tomato;
   padding: 5px;
   margin-top: 5px;
-  flex-grow: 1;
   line-height: 150px;
   color: white;
   text-align: center;
+  border: solid 1px black;
 }

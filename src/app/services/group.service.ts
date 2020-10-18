@@ -58,6 +58,7 @@ export class GroupService {
           group.id = doc.data().id;
           group.is_public = doc.data().is_public;
           group.name = doc.data().name;
+          group.message_list_id = doc.data().message_list_id
         });
       })
       .catch(function (error) {

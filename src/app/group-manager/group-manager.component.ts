@@ -3,6 +3,7 @@ import { GroupService } from '../services/group.service';
 import { v4 as uuidv4 } from 'uuid';
 import { Group } from "../interfaces/group";
 import { AuthenticationService } from '../services/authentication.service';
+import { ChatService } from '../services/chat.service';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
@@ -16,7 +17,7 @@ export class GroupManagerComponent implements OnInit {
   isPublic = true;
   submitButtonClicked = false;
 
-  constructor(private groupService: GroupService, private authService: AuthenticationService, public dialogRef: MatDialogRef<GroupManagerComponent>) { }
+  constructor(private groupService: GroupService, private authService: AuthenticationService, private chatService: ChatService, public dialogRef: MatDialogRef<GroupManagerComponent>) { }
 
   ngOnInit(): void {
   }
@@ -26,10 +27,12 @@ export class GroupManagerComponent implements OnInit {
       id: uuidv4(),
       name: this.groupName,
       admin_uid: this.authService.userData.uid,
-      is_public: this.isPublic
+      is_public: this.isPublic,
+      message_list_id: uuidv4()
     }
     this.groupService.createGroup(group).then(() => {
       this.groupService.addUserToGroup(group.id, group.admin_uid);
+      this.chatService.createMessageList(group.id, group.message_list_id);
       this.closeGroupManagerDialog()
     });
   }
