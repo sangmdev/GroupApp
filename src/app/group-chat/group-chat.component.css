@@ -1,3 +1,12 @@
+/* Mobile Excluded */
+@media (min-width: 576px) {
+}
+/* Mobile Only */
+@media (max-width: 575.98px) {
+}
+
+
+/*All screen sizes*/
 container {
   max-width: 1170px;
   margin: auto;

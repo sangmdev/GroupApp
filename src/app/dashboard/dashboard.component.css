@@ -1,7 +1,12 @@
-.dashboard-container {
+/* Mobile Excluded */
+@media (min-width: 576px) {
+  .dashboard-container {
     height: 100%;
     overflow: hidden;
+  }
 }
+
+/*All screen sizes*/
 .group {
     background: lightblue;
 }
@@ -39,4 +44,11 @@
   color: white;
   text-align: center;
   border: solid 1px black;
+}
+
+/* Mobile Only */
+@media (max-width: 575.98px) {
+  .group-container {
+    line-height: 50px;
+  }
 }

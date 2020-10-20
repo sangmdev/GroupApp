@@ -13,13 +13,17 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class GroupManagerComponent implements OnInit {
   groupAction = 'create';
+  groupCode: string;
   groupName: string;
   isPublic = true;
   submitButtonClicked = false;
+  userId;
+  joinGroupMessage = "";
 
   constructor(private groupService: GroupService, private authService: AuthenticationService, private chatService: ChatService, public dialogRef: MatDialogRef<GroupManagerComponent>) { }
 
   ngOnInit(): void {
+    this.userId = this.authService.userData.uid;
   }
 
   createGroup() {
@@ -31,13 +35,49 @@ export class GroupManagerComponent implements OnInit {
       message_list_id: uuidv4()
     }
     this.groupService.createGroup(group).then(() => {
-      this.groupService.addUserToGroup(group.id, group.admin_uid);
+      this.groupService.addUserToGroup(group.id, group.admin_uid, true);
       this.chatService.createMessageList(group.id, group.message_list_id);
-      this.closeGroupManagerDialog()
+      this.closeGroupManagerDialog("create");
     });
   }
 
-  closeGroupManagerDialog() {
-    this.dialogRef.close(`Group '${this.groupName}' was created successfully.`);
+  async joinGroup() {
+    this.joinGroupMessage = "";
+    await this.groupService.getGroupByGroupId(this.groupCode)
+      .then(group => {
+        // Check if group exists
+        if (group.id) {
+          // Check that the user is not already in the group.
+          this.groupService.getUserMembershipInGroup(this.userId, group.id).then(membership => {
+            if (membership.user_id) {
+              if (membership.is_approved) {
+                this.joinGroupMessage = "You are already a member of this group.";
+              }
+              else if (!membership.is_approved) {
+                this.joinGroupMessage = "You request to join is currently pending. Please wait for group admin to approve.";
+              }
+            }
+            else {
+              // Add user to the group but still has to be approved.
+              this.groupService.addUserToGroup(this.groupCode, this.userId, false);
+              this.groupName = group.name;
+              this.joinGroupMessage = "You have requested to be added to this group, please wait for group admin to approve.";
+              this.closeGroupManagerDialog("join");
+            }
+          });
+        }
+        else {
+          this.joinGroupMessage = "Group code is invalid.";
+        }
+    })
+  }
+
+  closeGroupManagerDialog(action) {
+    if (action == "create") {
+      this.dialogRef.close(`Group '${this.groupName}' was created successfully.`);
+    }
+    else if (action === "join") {
+      this.dialogRef.close(`Your request to join ${this.groupName} was successful. Please wait for group admin to approve.`)
+    }
   }
 }

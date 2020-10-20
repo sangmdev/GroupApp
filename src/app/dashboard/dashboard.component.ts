@@ -24,21 +24,24 @@ export class DashboardComponent implements OnInit {
   openGroupManager() {
     const dialogRef = this.dialog.open(GroupManagerComponent);
     dialogRef.afterClosed().subscribe(result => {
-      if (result && result.endsWith("successfully.")) {
-        this.addGroupSuccessSnackBar(result);
+      if (result && result.endsWith("was created successfully.")) {
+        this.groupManagerSuccessSnackBar(result);
         this.getUserGroups();
+      }
+      else if (result && result.endsWith("Please wait for group admin to approve.")) {
+        this.groupManagerSuccessSnackBar(result);
       }
     });
   }
 
-  addGroupSuccessSnackBar(message) {
+  groupManagerSuccessSnackBar(message) {
     this.snackBar.open(message, "Close", {
       duration: 5000,
       panelClass: ['bg-success']
     });
   }
 
-  // Get users
+  // Get user's groups
   async getUserGroups() {
     this.userGroups = [];
     this.authService.getUserData();

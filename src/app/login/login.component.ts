@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   passwordError = false;
   emailErrors = [];
   passwordErrors = "";
+  currentSnackbarRef;
 
   constructor(public authService: AuthenticationService, private snackBar: MatSnackBar, public router: Router) { }
 
@@ -83,6 +84,9 @@ export class LoginComponent implements OnInit {
 
   // If no errors, send email and password to authentication service for login. Catch any errors.
   login() {
+    if (this.currentSnackbarRef) {
+      this.currentSnackbarRef.dismiss();
+    }
     if (!this.emailError && !this.passwordError) {
       this.authService.login(this.email, this.password)
         .catch(err => {
@@ -93,6 +97,9 @@ export class LoginComponent implements OnInit {
 
   //If no errors, send email and password to authentication service for register. Catch any errors.
   register() {
+    if (this.currentSnackbarRef) {
+      this.currentSnackbarRef.dismiss();
+    }
     if (!this.emailError && !this.passwordError) {
       this.authService.register(this.email, this.password)
         .then(user => {
@@ -117,8 +124,8 @@ export class LoginComponent implements OnInit {
 
   // Open snackbar for error message.
   openErrorSnackBar(message: string) {
-    this.snackBar.open(message, "Close", {
-      duration: 10000,
+    this.currentSnackbarRef = this.snackBar.open(message, "Close", {
+      duration: 5000,
       panelClass: ['bg-danger']
     });
   }
