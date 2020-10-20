@@ -38,7 +38,7 @@ export class GroupService {
   // Get groups based on userId passed in.
   async getGroupsByUser(userId) {
     var groups = [];
-      await this.firestore.collection("membership").ref.where("user_id", "==", userId)
+      await this.firestore.collection("membership").ref.where("user_id", "==", userId).where("is_approved", "==" , true)
         .get()
         .then(querySnapshot => {
           querySnapshot.forEach(doc => groups.push(doc.data().group_id));
