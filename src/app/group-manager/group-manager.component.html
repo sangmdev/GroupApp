@@ -17,12 +17,9 @@
   </div>
   <div class="text-center" *ngIf="groupAction === 'join'">
     <form>
-      <!--<input class="form-control mb-2" type="text" placeholder="Group Name" [(ngModel)]="groupName" name="groupName" #name="ngModel" aria-label="groupName" required />
-      <mat-radio-group [(ngModel)]="isPublic" name="isPublic">
-        <mat-radio-button [value]="true">Public</mat-radio-button>
-        <mat-radio-button class="ml-4" [value]="false">Private</mat-radio-button>
-      </mat-radio-group>
-      <button class="btn btn-lg btn-primary btn-block my-2" type="submit" (click)="createGroup()">Create Group</button>-->
+      <input class="form-control mb-2" type="text" placeholder="Group Code" [(ngModel)]="groupCode" name="groupCode" #name="ngModel" aria-label="groupCode" required />
+      <p class="text-danger">{{this.joinGroupMessage}}</p>
+      <button class="btn btn-lg btn-primary btn-block my-2" type="submit" (click)="joinGroup()">Join Group</button>
     </form>
   </div>
 </mat-dialog-content>

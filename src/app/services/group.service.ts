@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Member } from "../interfaces/member";
 import { Group } from '../interfaces/group';
+import { Membership } from '../interfaces/membership';
 
 @Injectable({
   providedIn: 'root'
@@ -23,10 +24,11 @@ export class GroupService {
   }
 
   // Add a user to a group by adding an entry into the membership collection.
-  addUserToGroup(groupId, userId) {
+  addUserToGroup(groupId, userId, isApproved) {
     const member: Member = {
       user_id: userId,
-      group_id: groupId
+      group_id: groupId,
+      is_approved: isApproved
     }
     this.firestore
       .collection("membership")
@@ -65,5 +67,20 @@ export class GroupService {
         console.log("Error getting groups: ", error);
       });
     return group;
+  }
+
+  // Get membership based on userId and groupId;
+  async getUserMembershipInGroup(userId, groupId) {
+    var membership = {} as Membership;
+    await this.firestore.collection("membership").ref.where("user_id", "==", userId).where("group_id", "==", groupId)
+      .get()
+      .then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+          membership.group_id = doc.data().group_id;
+          membership.is_approved = doc.data().is_approved;
+          membership.user_id = doc.data().user_id;
+        });
+      });
+    return membership;
   }
 }
