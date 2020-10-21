@@ -4,29 +4,30 @@
   </div>
   <div class="inbox_people">
     <div class="message-box">
-      <div class="msg_history">
-        <li class="message" *ngFor="let message of messages">
-          <div class="incoming_msg">
-            <div class="incoming_msg_img">
-              <img src="https://i.imgur.com/k2PZLZa.png"
-                    alt="User avatar" />
+      <div id="message-history" class="msg_history">
+        <div [ngClass]="{'incoming-message': this.userId !== message.uid}"class="message" *ngFor="let message of messages">
+          <ng-container *ngIf="this.userId === message.uid; else incomingMessage">
+            <div class="message-line">
+              <img class="avatar" src="https://i.imgur.com/k2PZLZa.png" alt="User avatar" />
+              <div class="message-text">{{ message.text }}</div>
             </div>
-            <div class="received_msg">
-              <div class="received_withd_msg">
-                <p>{{ message.text }}</p>
-              </div>
+          </ng-container>
+          <ng-template #incomingMessage>
+            <div class="message-line incoming-message-line">
+              <img class="avatar incoming-avatar" src="https://i.imgur.com/k2PZLZa.png" alt="User avatar" />
+              <div class="message-text incoming-message-text">{{ message.text }}</div>
             </div>
-          </div>
-      </li>
+          </ng-template>
+        </div>
       </div>
       <div class="type_msg">
-        <form class="input_msg_write">
+        <form class="input-message">
           <input type="text"
                   class="write_msg"
                   placeholder="Type a message"
                   name="newMessage"
                   [(ngModel)]="newMessage" />
-          <button (click)="sendMessage()" class="msg_send_btn" type="button">
+          <button (click)="sendMessage()" class="msg-send-btn" type="button">
             <span class="material-icons icon-align">
               send
             </span>

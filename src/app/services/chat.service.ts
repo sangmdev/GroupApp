@@ -43,7 +43,7 @@ export class ChatService {
 
   async getAllMessagesByMessageListId(messageListId) {
     var messages = [];
-    await this.firestore.collection("messages").ref.where("message_list_id", "==", messageListId)
+    await this.firestore.collection(messageListId).ref
       .orderBy("created_at")
       .get()
       .then(querySnapshot => {
@@ -55,10 +55,10 @@ export class ChatService {
     return messages;
   }
 
-  sendMessage(message: Message) {
+  sendMessage(messageListId, message: Message) {
     return new Promise<any>((resolve, reject) => {
       this.firestore
-        .collection("messages")
+        .collection(messageListId)
         .add(message)
         .then(
           res => { resolve() },
