@@ -15,9 +15,13 @@ export class DashboardComponent implements OnInit {
   userGroups: Group[];
   selectedGroup: Group;
   groupIsSelected = false;
+  isMobile = false;
   constructor(private dialog: MatDialog, private snackBar: MatSnackBar, private groupService: GroupService, public authService: AuthenticationService) { }
 
   ngOnInit(): void {
+    if (window.screen.width < 577) { // 577px portrait
+      this.isMobile = true;
+    }
     this.getUserGroups();
   }
 
