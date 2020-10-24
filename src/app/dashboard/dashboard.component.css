@@ -48,7 +48,17 @@
 
 /* Mobile Only */
 @media (max-width: 575.98px) {
+  .dashboard-container {
+    overflow: hidden;
+  }
   .group-container {
     line-height: 50px;
+  }
+  .mobile-select {
+    width: 80%;
+    margin: auto;
+  }
+  .selector-container{
+      height: 100%;
   }
 }

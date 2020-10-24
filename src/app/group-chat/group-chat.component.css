@@ -1,10 +1,6 @@
 /* Mobile Excluded */
 @media (min-width: 576px) {
 }
-/* Mobile Only */
-@media (max-width: 575.98px) {
-}
-
 
 /*All screen sizes*/
 container {
@@ -23,11 +19,12 @@ container {
   justify-content: center;
 }
 
-.inbox_people {
+.message-box {
   background: #f8f8f8 none repeat scroll 0 0;
   overflow: hidden;
   width: 100%;
   border-right: 1px solid #c4c4c4;
+  padding-top: 5px;
 }
 
 .inbox_msg {
@@ -45,7 +42,7 @@ container {
   width: 100%;
 }
 
-.type_msg {
+.type-message {
   border-top: 1px solid #c4c4c4;
   position: relative;
 }
@@ -68,20 +65,21 @@ container {
   width: 33px;
 }
 
-.msg_history {
+.message-history {
   height: 516px;
   overflow-y: auto;
 }
 
 .message {
-  margin-top: .5rem;
-  margin-left: .5rem;
+  margin-left: 0;
+  margin-right: .5rem;
+  text-align: right;
 }
 
 .incoming-message {
-  text-align: right;
-  margin-left: 0;
-  margin-right: .5rem;
+  text-align: left;
+  margin-top: .5rem;
+  margin-left: .5rem;
 }
 
 
@@ -89,24 +87,24 @@ container {
   display: inline-block;
   height: 24px;
   width: auto;
-  background-color: lightgrey;
-  padding-right: 10px;
+  background-color: lightblue;
+  padding-right: 0;
   border-radius: 20px;
 }
 
 .incoming-message-line {
-  background-color: lightblue;
-  padding-right: 0;
+  background-color: lightgrey;
+  padding-right: 10px;
 }
 
 .avatar {
-  float: left;
   height: inherit;
   width: 24px;
+  float: right;
 }
 
-.incoming-avatar{
-  float: right;
+.incoming-avatar {
+  float: left;
 }
 
 .message-text {
@@ -118,14 +116,21 @@ container {
   white-space: nowrap;
   overflow: hidden;
   margin-left: 10px;
+  padding-right: 10px;
 }
 
 .incoming-message-text {
   float: right;
-  padding-right: 10px;
 }
 
-.message-metadata {
-
+/* Mobile Only */
+@media (max-width: 575.98px) {
+  .group-message-container{
+    margin-top: 5%;
+    height: 100%;
+    justify-content: start;
+  }
+  .message-history{
+    height: 65vh;
+  }
 }
-
